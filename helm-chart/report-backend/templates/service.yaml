@@ -9,8 +9,8 @@ spec:
     app: backend
   ports:
   - name: admin
-    port: {{ .Values.service.}}
-    targetPort: {{ .Values.service.}}
+    port: {{ .Values.service.port }}
+    targetPort: {{ .Values.service.port }}
     {{- if eq .Values.service.type "NodePort" }}
     nodePort: {{ .Values.service.nodeport }}
     {{- end }}

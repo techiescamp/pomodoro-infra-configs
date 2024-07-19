@@ -15,7 +15,9 @@ service:
   nodeport: 32749
 
 backend_url: http://34.71.163.101:30163
-backend_metrics_url: http://34.71.163.101:30163/metrics
+reports_url: http://34.71.163.101:30170
+metrics_url: http://34.71.163.101:30163/metrics
+jaeger_trace_url: http://52.43.65.153:30894
 
 ## Network Policy
 

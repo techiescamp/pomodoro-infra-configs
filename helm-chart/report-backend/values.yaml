@@ -7,8 +7,8 @@ image:
 
 service:
   type: NodePort
-  port: 7000
-  nodeport: 30163
+  port: 7070
+  nodeport: 30111
 
 configmap:
   mountpath: /app/config.js
