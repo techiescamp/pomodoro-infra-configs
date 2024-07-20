@@ -12,19 +12,37 @@ spec:
         - from:
             - namespaceSelector:
                 matchLabels:
-                    kubernetes.io/metadata.name: {{ .Values.egress.namespace }}
+                    kubernetes.io/metadata.name: {{ .Values.policy.namespace }}
               podSelector:
                 matchLabels:
-                    app: {{ .Values.egress.appLabel }}
+                    app: {{ .Values.policy.appLabels.main_backend }}
           ports:
-            - port: {{ .Values.service.port }}
+            - port: {{ .Values.policy.ports.main_port }}
+        - from:
+            - namespaceSelector:
+                matchLabels:
+                    kubernetes.io/metadata.name: {{ .Values.policy.namespace }}
+              podSelector:
+                matchLabels:
+                    app: {{ .Values.policy.appLabels.report_backend }}
+          ports:
+            - port: {{ .Values.policy.ports.report_port }}
     egress:
         - to:
             - namespaceSelector:
                 matchLabels:
-                    kubernetes.io/metadata.name: {{ .Values.egress.namespace }}
+                    kubernetes.io/metadata.name: {{ .Values.policy.namespace }}
               podSelector:
                 matchLabels:
-                    app: {{ .Values.egress.appLabel }}
+                    app: {{ .Values.policy.appLabels.main_backend }}
           ports:
-            - port: {{ .Values.egress.port }}
+            - port: {{ .Values.policy.ports.main_port }}
+        - to:
+            - namespaceSelector:
+                matchLabels:
+                    kubernetes.io/metadata.name: {{ .Values.policy.namespace }}
+              podSelector:
+                matchLabels:
+                    app: {{ .Values.policy.appLabels.report_backend }}
+          ports:
+            - port: {{ .Values.policy.ports.report_port }}

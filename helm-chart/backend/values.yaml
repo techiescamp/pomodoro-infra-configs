@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: techiescamp/pomodoro
-  tag: "8.1.0"
+  repository: aswinvj/pomodoro
+  tag: "0.1.0"
   pullPolicy: IfNotPresent
 
 service:

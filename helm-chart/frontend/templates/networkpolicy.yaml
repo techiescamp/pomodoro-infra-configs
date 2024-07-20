@@ -17,6 +17,15 @@ spec:
               kubernetes.io/metadata.name: {{ .Values.egress.namespace }}
           podSelector:
             matchLabels:
-              app: {{ .Values.egress.appLabel }}
+              app: {{ .Values.egress.appLabels.main_backend }}
       ports:
-        - port: {{ .Values.egress.port }}
+        - port: {{ .Values.egress.ports.main_port }}
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: {{ .Values.egress.namespace }}
+          podSelector:
+            matchLabels:
+              app: {{ .Values.egress.appLabels.report_backend }}
+      ports:
+        - port: {{ .Values.egress.ports.report_port }}
