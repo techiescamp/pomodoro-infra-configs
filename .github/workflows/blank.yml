@@ -3,6 +3,10 @@ name: Dynamic Environment Workflow
 on:
   workflow_dispatch:
     inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'staging'
       version:
         description: 'Version to deploy'
         required: true
@@ -29,6 +33,7 @@ jobs:
         environments=("staging" "production" "development")
         # Select an environment dynamically, e.g., the first one
         selected_environment=${environments[0]}
+        echo "Selected environment: $selected_environment"
         echo "::set-output name=environment::$selected_environment"
 
   deploy:
@@ -53,8 +58,4 @@ jobs:
     - name: Deploy
       run: |
         if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
-          echo "Performing a dry run"
-        else
-          echo "Deploying version ${{ github.event.inputs.version }} to ${{ needs.fetch-environment.outputs.environment }} environment"
-          # Add your deployment commands here
-        fi
+          echo
