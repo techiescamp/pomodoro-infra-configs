@@ -1,0 +1,60 @@
+name: Dynamic Environment Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to deploy'
+        required: true
+        default: 'latest'
+      dry_run:
+        description: 'Perform a dry run'
+        required: false
+        default: 'false'
+
+jobs:
+  fetch-environment:
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.fetch.outputs.environment }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Fetch environments
+      id: fetch
+      run: |
+        # Fetch environments from an external source (e.g., API)
+        environments=$(curl -s https://api.example.com/environments)
+        # Process and select an environment dynamically, e.g., the first one
+        selected_environment=$(echo $environments | jq -r '.[0]')
+        echo "::set-output name=environment::$selected_environment"
+
+  deploy:
+    needs: fetch-environment
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Use inputs
+      run: |
+        echo "Environment: ${{ needs.fetch-environment.outputs.environment }}"
+        echo "Version: ${{ github.event.inputs.version }}"
+        echo "Dry run: ${{ github.event.inputs.dry_run }}"
+
+    - name: Deploy
+      run: |
+        if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+          echo "Performing a dry run"
+        else
+          echo "Deploying version ${{ github.event.inputs.version }} to ${{ needs.fetch-environment.outputs.environment }} environment"
+          # Add your deployment commands here
+        fi
