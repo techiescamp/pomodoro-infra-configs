@@ -25,10 +25,10 @@ jobs:
     - name: Fetch environments
       id: fetch
       run: |
-        # Fetch environments from an external source (e.g., API)
-        environments=$(curl -s https://api.example.com/environments)
-        # Process and select an environment dynamically, e.g., the first one
-        selected_environment=$(echo $environments | jq -r '.[0]')
+        # Define three environments
+        environments=("staging" "production" "development")
+        # Select an environment dynamically, e.g., the first one
+        selected_environment=${environments[0]}
         echo "::set-output name=environment::$selected_environment"
 
   deploy:
