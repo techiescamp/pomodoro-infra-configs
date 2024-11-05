@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: aswinvj/pomodoro
+  repository: aswinvj/pomodoro-microservices
   tag: "1.0.0"
   pullPolicy: IfNotPresent
 
@@ -14,9 +14,9 @@ service:
   port: 3000
   nodeport: 32749
 
-backend_url: http://52.43.65.153:30163
-reports_url: http://52.43.65.153:30170
-metrics_url: http://52.43.65.153:30163/metrics
+backend_url: http://34.212.181.78:30163
+reports_url: http://34.212.181.78:30170
+metrics_url: http://34.212.181.78:30163/metrics
 jaeger_trace_url: http://simplest-collector.observability.svc.cluster.local:14268
 
 ## Network Policy
