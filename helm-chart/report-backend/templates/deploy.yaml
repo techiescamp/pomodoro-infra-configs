@@ -7,41 +7,17 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: backend
+      app: report-backend
   template:
     metadata:
       labels:
-        app: backend
+        app: report-backend
     spec:
       containers:
       - name: {{ .Release.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - containerPort: {{ .Values.service.port }}
-        livenessProbe:
-          httpGet:
-            path: /live
-            port: {{ .Values.service.port }}
-          periodSeconds: 10
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: {{ .Values.service.port }}
-          periodSeconds: 10
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
-        startupProbe:
-          httpGet:
-            path: /health
-            port: {{ .Values.service.port }}
-          periodSeconds: 30
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
         volumeMounts:
         - name: config
           mountPath: {{ .Values.configmap.mountpath}}

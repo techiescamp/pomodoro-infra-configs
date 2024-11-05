@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: techiescamp/pomodoro
-  tag: "7.0.0"
+  repository: aswinvj/pomodoro
+  tag: "1.0.0"
   pullPolicy: IfNotPresent
 
 configmap:
@@ -14,15 +14,21 @@ service:
   port: 3000
   nodeport: 32749
 
-backend_url: http://34.71.163.101:30163
-backend_metrics_url: http://34.71.163.101:30163/metrics
+backend_url: http://52.43.65.153:30163
+reports_url: http://52.43.65.153:30170
+metrics_url: http://52.43.65.153:30163/metrics
+jaeger_trace_url: http://simplest-collector.observability.svc.cluster.local:14268
 
 ## Network Policy
 
 egress:
   namespace: backend
-  appLabel: backend
-  port: 7000
+  appLabels:
+    main_backend: backend
+    report_backend: report-backend
+  ports:
+    main_port: 7000
+    report_port: 7070
 
 autoscaling:
   minReplicas: 2

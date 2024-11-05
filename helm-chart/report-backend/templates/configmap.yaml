@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+data:
+  config.js: |
+    const config = {
+      server: {
+        port: "{{ .Values.service.port }}"
+      },
+      database: {
+        mongoUrl: process.env.MONGODB_URL
+      },
+      observability: {
+        jaeger_trace_url: process.env.JAEGER_TRACE_URI
+      }
+    }
+
+    module.exports = config;

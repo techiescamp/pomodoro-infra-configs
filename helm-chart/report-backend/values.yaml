@@ -2,13 +2,13 @@ replicaCount: 1
 
 image:
   repository: aswinvj/pomodoro
-  tag: "0.1.0"
+  tag: "0.0.1"
   pullPolicy: IfNotPresent
 
 service:
   type: NodePort
-  port: 7000
-  nodeport: 30163
+  port: 7070
+  nodeport: 30170
 
 configmap:
   mountpath: /app/config.js
@@ -23,14 +23,3 @@ resources:
   limits:
     cpu: 1
     memory: 1Gi
-
-## Network Policy
-ingress:
-  namespace: frontend
-  appLabel: frontend
-  port: 3000
-
-egress:
-  namespace: db
-  appLabel: db
-  port: 27017
