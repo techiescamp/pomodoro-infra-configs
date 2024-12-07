@@ -6,9 +6,11 @@ image:
 
 pvc:
   storage: 1Gi
+
 secret:
   password: cGFzc3dvcmQxMjM=
   username: YWRtaW51c2Vy
+
 service:
   type: ClusterIP
   port: 27017

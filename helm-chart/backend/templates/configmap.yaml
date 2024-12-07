@@ -7,32 +7,23 @@ data:
   config.js: |
     const config = {
       server: {
-        port: process.env.PORT
+        port: "{{ .Values.port}}"
       },
       database: {
-        mongoUrl: process.env.MONGODB_URL
+        mongoUrl: "{{ .Values.mongourl}}"
       },
       secrets: {
-        jwt_key: process.env.JWT_SECRET
-      },
-      googleAuth: {
-        clientId: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        redirectUrl: process.env.GOOGLE_REDIRECT_URI
+        jwt_key: "{{ .Values.jwt_key}}"
       },
       session: {
-        secret: process.env.SESSION_SECRET
+        secret: "{{ .Values.session_secret}}"
       },
       urls: {
-        baseUrl: process.env.BASE_URL,
-        google_redirect_success: process.env.GOOGLE_REDIRECT_SUCCESS
-      },
-      mail: {
-        email: process.env.ZOHO_MAIL,
-        password: process.env.ZOHO_PASSWORD
+        baseUrl: "{{ .Values.frontend_url }}",
+        reportsUrl: "{{ .Values.reports_backend_url"
       },
       observability: {
-        jaeger_trace_url: process.env.JAEGER_TRACE_URI
+        jaeger_trace_url: :{{ .Values.jaeger_trace_url}}
       }
     }
 

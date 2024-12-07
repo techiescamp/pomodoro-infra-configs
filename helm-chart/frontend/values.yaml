@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: aswinvj/pomodoro-microservices
+  repository: techiescamp/pomodoro-frontend
   tag: "1.0.0"
   pullPolicy: IfNotPresent
 
@@ -14,6 +14,7 @@ service:
   port: 3000
   nodeport: 32749
 
+## Configmap template file data
 backend_url: http://34.212.181.78:30163
 reports_url: http://34.212.181.78:30170
 metrics_url: http://34.212.181.78:30163/metrics
