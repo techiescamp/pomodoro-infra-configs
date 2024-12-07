@@ -7,13 +7,13 @@ data:
   config.js: |
     const config = {
       server: {
-        port: "{{ .Values.service.port }}"
+        port: "{{ .Values.port }}"
       },
       database: {
-        mongoUrl: process.env.MONGODB_URL
+        mongoUrl: "{{ .Values.mongoUrl }}"
       },
       observability: {
-        jaeger_trace_url: process.env.JAEGER_TRACE_URI
+        jaeger_trace_url: "{{ .Values.jaeger_trace_url }}"
       }
     }
 
