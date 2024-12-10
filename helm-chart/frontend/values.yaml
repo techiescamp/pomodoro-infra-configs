@@ -15,23 +15,7 @@ service:
   nodeport: 32749
 
 ## Configmap template file data
-backend_url: http://34.212.181.78:30163
-reports_url: http://34.212.181.78:30170
-metrics_url: http://34.212.181.78:30163/metrics
+backend_url: http://10.0.0.10:30163
+reports_url: http://10.0.0.10:30170
+metrics_url: http://10.0.0.10:30163/metrics
 jaeger_trace_url: http://simplest-collector.observability.svc.cluster.local:14268
-
-## Network Policy
-
-egress:
-  namespace: backend
-  appLabels:
-    main_backend: backend
-    report_backend: report-backend
-  ports:
-    main_port: 7000
-    report_port: 7070
-
-autoscaling:
-  minReplicas: 2
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 50

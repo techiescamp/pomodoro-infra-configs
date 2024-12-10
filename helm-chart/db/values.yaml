@@ -31,7 +31,4 @@ policy:
   appLabels:
     main_backend: backend
     report_backend: report-backend
-  ports:
-    main_port: 7000
-    report_port: 7070
 

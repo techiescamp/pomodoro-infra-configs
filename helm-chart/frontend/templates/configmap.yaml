@@ -10,6 +10,5 @@ data:
         reportsUrl: "{{ .Values.reports_url }}",
         metrics_url: "{{ .Values.metrics_url }}",
         jaeger_trace_url: "{{ .Values.jaeger_trace_url }}"
-    };
-
+    }
     export default config;

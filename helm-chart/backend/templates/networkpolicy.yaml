@@ -1,30 +1,28 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: {{ .Release.Name }}-network-policy
+  name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
 spec:
-  podSelector: {}
+  podSelector:
+      matchLabels:
+        app: backend
+        app: report-backend
+      
   policyTypes:
   - Ingress
-  - Egress
   ingress:
     - from:
         - namespaceSelector:
             matchLabels:
-              kubernetes.io/metadata.name: {{ .Values.ingress.namespace }}
+              kubernetes.io/metadata.name: {{ .Values.frontend.namespace }}
           podSelector:
             matchLabels:
-              app: {{ .Values.ingress.appLabel }}
-      ports:
-        - port: {{ .Values.ingress.port }}
-  egress:
-    - to:
+              app: {{ .Values.frontend.appLabel }}
+    - from:
         - namespaceSelector:
             matchLabels:
-              kubernetes.io/metadata.name: {{ .Values.egress.namespace }}
+              kubernetes.io/metadata.name: {{ .Values.db.namespace }}
           podSelector:
             matchLabels:
-              app: {{ .Values.egress.appLabel }}
-      ports:
-        - port: {{ .Values.egress.port }}
+              app: {{ .Values.db.appLabel }}
