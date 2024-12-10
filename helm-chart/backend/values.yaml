@@ -29,17 +29,15 @@ port: 7000
 mongourl: mongodb://adminuser:password123@pomodoro-db.db.svc.cluster.local:27017/pomodoro?authSource=admin
 jwt_key: mysecret
 session_secret: supersecret
-frontend_url: http://localhost:3000
-report_backend_url: http://localhost:7070
+frontend_url: http://10.0.0.10:32749
+report_backend_url: http://10.0.0.10:30170
 jaeger_trace_url: http://simplest-collector.observability.svc.cluster.local:14268
 
 ## Network Policy
-ingress:
-  namespace: frontend
-  appLabel: frontend
-  port: 3000
-
-egress:
-  namespace: db
-  appLabel: db
-  port: 27017
+policy:
+  frontend:
+    namespace: frontend
+    appLabel: frontend
+  db:
+    namespace: db
+    appLabel: db

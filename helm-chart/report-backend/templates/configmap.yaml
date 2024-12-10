@@ -10,7 +10,7 @@ data:
         port: "{{ .Values.port }}"
       },
       database: {
-        mongoUrl: "{{ .Values.mongoUrl }}"
+        mongoUrl: "{{ .Values.mongourl }}"
       },
       observability: {
         jaeger_trace_url: "{{ .Values.jaeger_trace_url }}"

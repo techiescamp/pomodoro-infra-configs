@@ -38,3 +38,28 @@ Modify the values.yaml file with your configuration and run the following comman
 ```bash
 helm install pomodoro-frontend frontend -n frontend --create-namespace
 ```
+
+## Commands to deploy helm chart
+
+If you no longer need the setup, run the following command to delete it.
+
+### Frontend
+
+```bash
+helm delete pomodoro-frontend -n frontend
+```
+
+### Backend
+```bash
+helm delete pomodoro-backend -n backend
+```
+
+### Report Backend
+```bash
+helm delete pomodoro-report-backend -n backend
+```
+
+### Database
+```bash
+helm delete pomodoro-db -n db
+```

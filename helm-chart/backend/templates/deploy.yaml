@@ -38,17 +38,14 @@ spec:
           httpGet:
             path: /health
             port: {{ .Values.service.port }}
-          periodSeconds: 30
-          timeoutSeconds: 5
+          periodSeconds: 10
+          initialDelaySeconds: 20
           successThreshold: 1
           failureThreshold: 3
         volumeMounts:
         - name: config
           mountPath: {{ .Values.configmap.mountpath}}
           subPath: {{ .Values.configmap.subpath}}
-        envFrom:
-        - secretRef:
-            name: {{ .Values.secretName }}
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}

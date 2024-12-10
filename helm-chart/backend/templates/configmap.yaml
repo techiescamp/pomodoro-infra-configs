@@ -7,23 +7,23 @@ data:
   config.js: |
     const config = {
       server: {
-        port: "{{ .Values.port}}"
+        port: "{{ .Values.port }}"
       },
       database: {
-        mongoUrl: "{{ .Values.mongourl}}"
+        mongoUrl: "{{ .Values.mongourl }}"
       },
       secrets: {
-        jwt_key: "{{ .Values.jwt_key}}"
+        jwt_key: "{{ .Values.jwt_key }}"
       },
       session: {
-        secret: "{{ .Values.session_secret}}"
+        secret: "{{ .Values.session_secret }}"
       },
       urls: {
         baseUrl: "{{ .Values.frontend_url }}",
-        reportsUrl: "{{ .Values.reports_backend_url"
+        reportsUrl: "{{ .Values.report_backend_url }}"
       },
       observability: {
-        jaeger_trace_url: :{{ .Values.jaeger_trace_url}}
+        jaeger_trace_url: "{{ .Values.jaeger_trace_url }}"
       }
     }
 

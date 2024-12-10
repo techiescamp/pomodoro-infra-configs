@@ -22,9 +22,6 @@ spec:
         - name: config
           mountPath: {{ .Values.configmap.mountpath}}
           subPath: {{ .Values.configmap.subpath}}
-        envFrom:
-        - secretRef:
-            name: {{ .Values.secretName }}
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}
