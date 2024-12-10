@@ -4,27 +4,23 @@ metadata:
     name: {{ .Release.Name }}
     namespace: {{ .Release.Namespace }}
 spec:
-    podSelector: {}
+    podSelector:
+        matchLabels:
+            app: db
     policyTypes:
     - Ingress
-    - Egress
     ingress:
         - from:
             - namespaceSelector:
                 matchLabels:
-                    kubernetes.io/metadata.name: {{ .Values.egress.namespace }}
-              podSelector:
+                    kubernetes.io/metadata.name: {{ .Values.policy.namespace }}
+            - podSelector:
                 matchLabels:
-                    app: {{ .Values.egress.appLabel }}
-          ports:
-            - port: {{ .Values.service.port }}
-    egress:
-        - to:
+                    app: {{ .Values.policy.appLabels.main_backend }}
+        - from:
             - namespaceSelector:
                 matchLabels:
-                    kubernetes.io/metadata.name: {{ .Values.egress.namespace }}
-              podSelector:
+                    kubernetes.io/metadata.name: {{ .Values.policy.namespace }}
+            - podSelector:
                 matchLabels:
-                    app: {{ .Values.egress.appLabel }}
-          ports:
-            - port: {{ .Values.egress.port }}
+                    app: {{ .Values.policy.appLabels.report_backend }}

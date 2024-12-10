@@ -12,16 +12,6 @@ data:
       database: {
         mongoUrl: "{{ .Values.mongourl }}"
       },
-      secrets: {
-        jwt_key: "{{ .Values.jwt_key }}"
-      },
-      session: {
-        secret: "{{ .Values.session_secret }}"
-      },
-      urls: {
-        baseUrl: "{{ .Values.frontend_url }}",
-        reportsUrl: "{{ .Values.report_backend_url }}"
-      },
       observability: {
         jaeger_trace_url: "{{ .Values.jaeger_trace_url }}"
       }

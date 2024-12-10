@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: techiescamp/pomodoro
-  tag: "7.0.0"
+  repository: techiescamp/pomodoro-frontend
+  tag: "1.0.0"
   pullPolicy: IfNotPresent
 
 configmap:
@@ -14,17 +14,8 @@ service:
   port: 3000
   nodeport: 32749
 
-backend_url: http://34.71.163.101:30163
-backend_metrics_url: http://34.71.163.101:30163/metrics
-
-## Network Policy
-
-egress:
-  namespace: backend
-  appLabel: backend
-  port: 7000
-
-autoscaling:
-  minReplicas: 2
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
+## Configmap template file data
+backend_url: http://10.0.0.10:30163
+reports_url: http://10.0.0.10:30170
+metrics_url: http://10.0.0.10:30163/metrics
+jaeger_trace_url: http://simplest-collector.observability.svc.cluster.local:14268

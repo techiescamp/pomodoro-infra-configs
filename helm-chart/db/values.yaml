@@ -6,9 +6,11 @@ image:
 
 pvc:
   storage: 1Gi
+
 secret:
   password: cGFzc3dvcmQxMjM=
   username: YWRtaW51c2Vy
+
 service:
   type: ClusterIP
   port: 27017
@@ -24,8 +26,9 @@ resources:
 
 ## Network Policy
 
-egress:
+policy:
   namespace: backend
-  appLabel: backend
-  port: 7000
+  appLabels:
+    main_backend: backend
+    report_backend: report-backend
 
