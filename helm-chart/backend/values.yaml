@@ -34,10 +34,10 @@ report_backend_url: http://10.0.0.10:30170
 jaeger_trace_url: http://simplest-collector.observability.svc.cluster.local:14268
 
 ## Network Policy
-frontend:
-  namespace: frontend
-  appLabel: frontend
-
-db:
-  namespace: db
-  appLabel: db
+policy:
+  frontend:
+    namespace: frontend
+    appLabel: frontend
+  db:
+    namespace: db
+    appLabel: db

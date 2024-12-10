@@ -15,14 +15,14 @@ spec:
     - from:
         - namespaceSelector:
             matchLabels:
-              kubernetes.io/metadata.name: {{ .Values.frontend.namespace }}
+              kubernetes.io/metadata.name: {{ .Values.policy.frontend.namespace }}
           podSelector:
             matchLabels:
-              app: {{ .Values.frontend.appLabel }}
+              app: {{ .Values.policy.frontend.appLabel }}
     - from:
         - namespaceSelector:
             matchLabels:
-              kubernetes.io/metadata.name: {{ .Values.db.namespace }}
+              kubernetes.io/metadata.name: {{ .Values.policy.db.namespace }}
           podSelector:
             matchLabels:
-              app: {{ .Values.db.appLabel }}
+              app: {{ .Values.policy.db.appLabel }}
